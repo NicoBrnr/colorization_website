@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "title": "Photo Colorization - Bring your memories to life",
+    "description": "Colorize your black and white photos using artificial intelligence. Transform your old memories into vibrant, lifelike images."
+  },
+  "nav": {
+    "home": "Home",
+    "colorize": "Colorize",
+    "features": "Features",
+    "gallery": "Gallery"
+  },
+  "hero": {
+    "title": "Bring your",
+    "titleHighlight": "memories",
+    "subtitle": "Transform your black and white photos into vibrant images using artificial intelligence. Rediscover your precious moments like never before.",
+    "cta": "Colorize a photo",
+    "ctaSecondary": "View gallery",
+    "trusted": "Already over 10,000 photos colorized"
+  },
+  "features": {
+    "title": "Why choose our service?",
+    "subtitle": "Cutting-edge technology at the service of your memories",
+    "ai": {
+      "title": "State-of-the-art AI",
+      "description": "Our DeOldify model uses deep learning for realistic and natural colorization."
+    },
+    "fast": {
+      "title": "Fast and simple",
+      "description": "Upload your photo and get the result in seconds. No registration required."
+    },
+    "quality": {
+      "title": "High quality",
+      "description": "Keep the original quality of your image. Download the result in high resolution."
+    },
+    "free": {
+      "title": "Free",
+      "description": "Colorize your photos for free. No limit on the number of images."
+    }
+  },
+  "howItWorks": {
+    "title": "How does it work?",
+    "subtitle": "Three simple steps to bring your photos back to life",
+    "step1": {
+      "title": "Upload",
+      "description": "Drag and drop your black and white photo or click to select a file."
+    },
+    "step2": {
+      "title": "Colorize",
+      "description": "Our AI analyzes your image and applies natural colors in seconds."
+    },
+    "step3": {
+      "title": "Download",
+      "description": "Compare the result and download your colorized photo in high resolution."
+    }
+  },
+  "gallery": {
+    "title": "Transformation Gallery",
+    "subtitle": "Discover the magic of AI colorization",
+    "before": "Before",
+    "after": "After"
+  },
+  "cta": {
+    "title": "Ready to bring your memories back to life?",
+    "subtitle": "Start now and see the difference in seconds.",
+    "button": "Colorize my photo for free"
+  },
+  "footer": {
+    "description": "Photo colorization powered by artificial intelligence. Bring your black and white memories to life.",
+    "links": "Useful links",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "terms": "Terms of use",
+    "contact": "Contact",
+    "copyright": "© 2026 Photo Colorization. All rights reserved."
+  },
+  "colorize": {
+    "title": "Colorize your photo",
+    "subtitle": "Upload a black and white image and let our AI transform it into color.",
+    "upload": {
+      "title": "Drag and drop your image here",
+      "subtitle": "or click to select a file",
+      "formats": "Accepted formats: JPG, PNG, WEBP (max 10 MB)",
+      "button": "Choose an image"
+    },
+    "options": {
+      "title": "Colorization options",
+      "model": "Model",
+      "modelArtistic": "Artistic (best quality)",
+      "modelStable": "Stable (faster)",
+      "quality": "Render quality"
+    },
+    "process": {
+      "button": "Colorize",
+      "processing": "Colorizing...",
+      "processingSubtitle": "This may take 10 to 30 seconds"
+    },
+    "result": {
+      "title": "Your colorized photo",
+      "compare": "Compare the result",
+      "download": "Download",
+      "downloadHD": "Download HD",
+      "newImage": "New image",
+      "original": "Original",
+      "colorized": "Colorized"
+    },
+    "error": {
+      "title": "An error occurred",
+      "retry": "Retry",
+      "fileSize": "File is too large (max 10 MB)",
+      "fileType": "File format not supported"
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "title": "Colorisation de Photos - Donnez vie à vos souvenirs",
+    "description": "Colorisez vos photos en noir et blanc grâce à l'intelligence artificielle. Transformez vos vieux souvenirs en images vibrantes et pleines de vie."
+  },
+  "nav": {
+    "home": "Accueil",
+    "colorize": "Coloriser",
+    "features": "Fonctionnalités",
+    "gallery": "Galerie"
+  },
+  "hero": {
+    "title": "Donnez vie à vos",
+    "titleHighlight": "souvenirs",
+    "subtitle": "Transformez vos photos en noir et blanc en images vibrantes grâce à l'intelligence artificielle. Redécouvrez vos moments précieux comme jamais auparavant.",
+    "cta": "Coloriser une photo",
+    "ctaSecondary": "Voir la galerie",
+    "trusted": "Déjà plus de 10 000 photos colorisées"
+  },
+  "features": {
+    "title": "Pourquoi choisir notre service ?",
+    "subtitle": "Une technologie de pointe au service de vos souvenirs",
+    "ai": {
+      "title": "IA de pointe",
+      "description": "Notre modèle DeOldify utilise l'apprentissage profond pour une colorisation réaliste et naturelle."
+    },
+    "fast": {
+      "title": "Rapide et simple",
+      "description": "Téléchargez votre photo et obtenez le résultat en quelques secondes. Aucune inscription requise."
+    },
+    "quality": {
+      "title": "Haute qualité",
+      "description": "Conservez la qualité originale de votre image. Téléchargez le résultat en haute résolution."
+    },
+    "free": {
+      "title": "Gratuit",
+      "description": "Colorisez vos photos sans frais. Aucune limite sur le nombre d'images."
+    }
+  },
+  "howItWorks": {
+    "title": "Comment ça marche ?",
+    "subtitle": "Trois étapes simples pour redonner vie à vos photos",
+    "step1": {
+      "title": "Téléchargez",
+      "description": "Glissez-déposez votre photo en noir et blanc ou cliquez pour sélectionner un fichier."
+    },
+    "step2": {
+      "title": "Colorisez",
+      "description": "Notre IA analyse votre image et applique des couleurs naturelles en quelques secondes."
+    },
+    "step3": {
+      "title": "Téléchargez",
+      "description": "Comparez le résultat et téléchargez votre photo colorisée en haute résolution."
+    }
+  },
+  "gallery": {
+    "title": "Galerie de transformations",
+    "subtitle": "Découvrez la magie de la colorisation par IA",
+    "before": "Avant",
+    "after": "Après"
+  },
+  "cta": {
+    "title": "Prêt à redonner vie à vos souvenirs ?",
+    "subtitle": "Commencez maintenant et voyez la différence en quelques secondes.",
+    "button": "Coloriser ma photo gratuitement"
+  },
+  "footer": {
+    "description": "Colorisation de photos par intelligence artificielle. Donnez vie à vos souvenirs en noir et blanc.",
+    "links": "Liens utiles",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "contact": "Contact",
+    "copyright": "© 2026 Colorisation Photos. Tous droits réservés."
+  },
+  "colorize": {
+    "title": "Colorisez votre photo",
+    "subtitle": "Téléchargez une image en noir et blanc et laissez notre IA la transformer en couleur.",
+    "upload": {
+      "title": "Glissez-déposez votre image ici",
+      "subtitle": "ou cliquez pour sélectionner un fichier",
+      "formats": "Formats acceptés : JPG, PNG, WEBP (max 10 Mo)",
+      "button": "Choisir une image"
+    },
+    "options": {
+      "title": "Options de colorisation",
+      "model": "Modèle",
+      "modelArtistic": "Artistique (meilleure qualité)",
+      "modelStable": "Stable (plus rapide)",
+      "quality": "Qualité de rendu"
+    },
+    "process": {
+      "button": "Coloriser",
+      "processing": "Colorisation en cours...",
+      "processingSubtitle": "Cela peut prendre 10 à 30 secondes"
+    },
+    "result": {
+      "title": "Votre photo colorisée",
+      "compare": "Comparez le résultat",
+      "download": "Télécharger",
+      "downloadHD": "Télécharger HD",
+      "newImage": "Nouvelle image",
+      "original": "Original",
+      "colorized": "Colorisé"
+    },
+    "error": {
+      "title": "Une erreur est survenue",
+      "retry": "Réessayer",
+      "fileSize": "Le fichier est trop volumineux (max 10 Mo)",
+      "fileType": "Format de fichier non supporté"
+    }
+  }
+}
