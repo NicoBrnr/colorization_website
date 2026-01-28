@@ -1,10 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { auth } from '@/lib/auth';
+import { checkRateLimit, recordColorization } from '@/lib/rate-limit';
 
 const DEOLDIFY_API_URL = process.env.DEOLDIFY_API_URL 
 const DEOLDIFY_API_KEY = process.env.DEOLDIFY_API_KEY
 
 export async function POST(request: NextRequest) {
   try {
+    // Check authentication
+    const session = await auth();
+    
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        { error: 'Authentication required. Please sign in to colorize images.' },
+        { status: 401 }
+      );
+    }
+
+    // Check rate limit
+    const rateLimit = await checkRateLimit(session.user.id);
+    
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { 
+          error: `Daily limit reached. You have used all ${rateLimit.total} free colorizations today. Please try again tomorrow.`,
+          remaining: rateLimit.remaining,
+          total: rateLimit.total
+        },
+        { status: 429 }
+      );
+    }
+
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
 
@@ -73,19 +99,31 @@ export async function POST(request: NextRequest) {
 
     // Get the colorized image
     const contentType = apiResponse.headers.get('content-type');
+    let imageUrl: string;
     
     if (contentType?.includes('application/json')) {
       // API returns JSON with image URL or base64
       const data = await apiResponse.json();
-      return NextResponse.json({ imageUrl: data.image || data.imageUrl || data.result });
+      imageUrl = data.image || data.imageUrl || data.result;
     } else {
       // API returns image directly
       const imageBuffer = await apiResponse.arrayBuffer();
       const base64 = Buffer.from(imageBuffer).toString('base64');
       const imageType = contentType || 'image/jpeg';
-      const dataUrl = `data:${imageType};base64,${base64}`;
-      return NextResponse.json({ imageUrl: dataUrl });
+      imageUrl = `data:${imageType};base64,${base64}`;
     }
+
+    // Record the colorization
+    await recordColorization(session.user.id, imageUrl);
+
+    // Get updated rate limit info
+    const updatedRateLimit = await checkRateLimit(session.user.id);
+
+    return NextResponse.json({ 
+      imageUrl,
+      remaining: updatedRateLimit.remaining,
+      total: updatedRateLimit.total
+    });
   } catch (error) {
     console.error('Colorization error:', error);
     return NextResponse.json(

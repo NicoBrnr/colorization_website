@@ -4,12 +4,21 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Palette } from 'lucide-react';
+import { Menu, X, Palette, User, LogOut } from 'lucide-react';
 
-export function Navbar() {
+interface NavbarProps {
+  user?: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+  } | null;
+}
+
+export function Navbar({ user }: NavbarProps) {
   const t = useTranslations('nav');
   const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const navItems = [
     { href: `/${locale}`, label: t('home') },
@@ -49,6 +58,61 @@ export function Navbar() {
             >
               {t('colorize')}
             </Link>
+
+            {/* User Menu */}
+            {user ? (
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-800 transition-colors"
+                >
+                  {user.image ? (
+                    <img 
+                      src={user.image} 
+                      alt={user.name || ''} 
+                      className="w-8 h-8 rounded-full"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                      <User className="w-5 h-5 text-white" />
+                    </div>
+                  )}
+                  <span className="text-white text-sm font-medium">{user.name?.split(' ')[0]}</span>
+                </button>
+
+                <AnimatePresence>
+                  {showUserMenu && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg py-2 z-50 border border-gray-700"
+                    >
+                      <div className="px-4 py-2 border-b border-gray-700">
+                        <p className="text-sm text-gray-400">{user.email}</p>
+                      </div>
+                      <form action="/api/auth/signout" method="POST">
+                        <button
+                          type="submit"
+                          className="w-full px-4 py-2 text-left text-sm text-gray-300 hover:bg-gray-700 flex items-center gap-2"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          {t('signOut')}
+                        </button>
+                      </form>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ) : (
+              <Link
+                href="/api/auth/signin"
+                className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white font-medium rounded-lg transition-colors flex items-center gap-2"
+              >
+                <User className="w-4 h-4" />
+                {t('signIn')}
+              </Link>
+            )}
           </div>
 
           {/* Language Switcher */}
@@ -97,6 +161,50 @@ export function Navbar() {
                   {item.label}
                 </Link>
               ))}
+
+              {/* Mobile Auth Section */}
+              <div className="pt-4 border-t border-gray-800">
+                {user ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 px-2">
+                      {user.image ? (
+                        <img 
+                          src={user.image} 
+                          alt={user.name || ''} 
+                          className="w-8 h-8 rounded-full"
+                        />
+                      ) : (
+                        <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                          <User className="w-5 h-5 text-white" />
+                        </div>
+                      )}
+                      <div>
+                        <p className="text-white text-sm font-medium">{user.name}</p>
+                        <p className="text-gray-400 text-xs">{user.email}</p>
+                      </div>
+                    </div>
+                    <form action="/api/auth/signout" method="POST">
+                      <button
+                        type="submit"
+                        className="w-full px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg flex items-center gap-2"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        {t('signOut')}
+                      </button>
+                    </form>
+                  </div>
+                ) : (
+                  <Link
+                    href="/api/auth/signin"
+                    onClick={() => setIsOpen(false)}
+                    className="block px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg text-center"
+                  >
+                    <User className="w-4 h-4 inline mr-2" />
+                    {t('signIn')}
+                  </Link>
+                )}
+              </div>
+
               <div className="flex gap-2 pt-4 border-t border-gray-800">
                 <Link
                   href="/fr"

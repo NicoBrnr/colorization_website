@@ -7,7 +7,15 @@
     "home": "Home",
     "colorize": "Colorize",
     "features": "Features",
-    "gallery": "Gallery"
+    "gallery": "Gallery",
+    "signIn": "Sign in",
+    "signOut": "Sign out"
+  },
+  "auth": {
+    "welcome": "Welcome",
+    "rateLimitInfo": "{remaining} of {total} free colorizations remaining today",
+    "limitReached": "Daily limit reached",
+    "signInRequired": "Sign in to colorize photos"
   },
   "hero": {
     "title": "Bring your",

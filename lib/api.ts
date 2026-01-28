@@ -8,6 +8,8 @@ export interface ColorizeResponse {
   success: boolean;
   imageUrl?: string;
   error?: string;
+  remaining?: number;
+  total?: number;
 }
 
 export async function colorizeImage(
@@ -45,6 +47,8 @@ export async function colorizeImage(
     return {
       success: true,
       imageUrl: data.imageUrl,
+      remaining: data.remaining,
+      total: data.total,
     };
   } catch (error) {
     return {

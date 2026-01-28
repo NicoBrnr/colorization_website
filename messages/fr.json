@@ -7,7 +7,15 @@
     "home": "Accueil",
     "colorize": "Coloriser",
     "features": "Fonctionnalités",
-    "gallery": "Galerie"
+    "gallery": "Galerie",
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter"
+  },
+  "auth": {
+    "welcome": "Bienvenue",
+    "rateLimitInfo": "{remaining} sur {total} colorisations gratuites restantes aujourd'hui",
+    "limitReached": "Limite quotidienne atteinte",
+    "signInRequired": "Connectez-vous pour coloriser des photos"
   },
   "hero": {
     "title": "Donnez vie à vos",
