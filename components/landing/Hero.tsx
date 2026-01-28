@@ -50,28 +50,28 @@ export function Hero() {
   };
 
   return (
-    <section className="relative pt-20 pb-8 overflow-hidden" ref={ref}>
+    <section className="relative min-h-screen flex flex-col justify-center pt-20 pb-12 overflow-hidden" ref={ref}>
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900 to-gray-900/95" />
       
       {/* Subtle gradient orbs */}
-      <div className="absolute top-20 -left-32 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute top-40 -right-32 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl" />
+      <div className="absolute top-20 -left-32 w-96 h-96 bg-primary/15 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 -right-32 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* 1) Title + Subtitle */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-4xl mx-auto mb-10"
+          className="text-center max-w-5xl mx-auto mb-8 lg:mb-12"
         >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
             {t('title')}{' '}
             <span className="gradient-text">{t('titleHighlight')}</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto">
             {t('subtitle')}
           </p>
         </motion.div>
@@ -81,13 +81,13 @@ export function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative max-w-5xl mx-auto"
+          className="relative max-w-6xl mx-auto"
         >
           {/* Image Comparison Container */}
           <div 
             ref={sliderRef}
             className="relative rounded-2xl overflow-hidden border border-gray-700 shadow-2xl shadow-primary/20 cursor-ew-resize select-none"
-            style={{ aspectRatio: '16/10' }}
+            style={{ aspectRatio: '16/9' }}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
@@ -99,7 +99,7 @@ export function Hero() {
             {/* Colored image (background) */}
             <div className="absolute inset-0">
               <Image
-                src="/landing/landing_colored.jpg"
+                src="/landing/french_riviera_colored.jpg"
                 alt="Photo colorisée"
                 fill
                 className="object-cover"
@@ -113,7 +113,7 @@ export function Hero() {
               style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
             >
               <Image
-                src="/landing/landing_bw.jpg"
+                src="/landing/french_riviera_bw.jpg"
                 alt="Photo originale"
                 fill
                 className="object-cover"
@@ -178,40 +178,19 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
+          className="flex flex-col sm:flex-row gap-4 justify-center mt-8 lg:mt-12"
         >
           <Link href={`/${locale}/coloriser`}>
-            <Button size="lg" className="w-full sm:w-auto group text-lg px-8">
+            <Button size="lg" className="w-full sm:w-auto group text-lg px-10 py-4">
               {t('cta')}
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
           <Link href={`/${locale}#gallery`}>
-            <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8">
+            <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-10 py-4">
               {t('ctaSecondary')}
             </Button>
           </Link>
-        </motion.div>
-
-        {/* Stats row */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6 }}
-          className="flex flex-wrap justify-center gap-8 sm:gap-16 mt-10 pt-8 border-t border-gray-800"
-        >
-          <div className="text-center">
-            <p className="text-3xl font-bold text-white">10k+</p>
-            <p className="text-gray-400 text-sm">Photos colorisées</p>
-          </div>
-          <div className="text-center">
-            <p className="text-3xl font-bold text-white">~15s</p>
-            <p className="text-gray-400 text-sm">Temps de traitement</p>
-          </div>
-          <div className="text-center">
-            <p className="text-3xl font-bold text-white">100%</p>
-            <p className="text-gray-400 text-sm">Gratuit</p>
-          </div>
         </motion.div>
       </div>
     </section>
