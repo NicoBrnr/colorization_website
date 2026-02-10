@@ -114,7 +114,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Record the colorization
-    await recordColorization(session.user.id, imageUrl);
+    await recordColorization(session.user.id);
 
     // Get updated rate limit info
     const updatedRateLimit = await checkRateLimit(session.user.id);

@@ -34,11 +34,10 @@ export async function checkRateLimit(userId: string): Promise<{
   };
 }
 
-export async function recordColorization(userId: string, imageUrl?: string): Promise<void> {
+export async function recordColorization(userId: string): Promise<void> {
   await prisma.imageColorization.create({
     data: {
       userId,
-      imageUrl,
     },
   });
 }

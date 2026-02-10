@@ -3,12 +3,17 @@ import { auth } from '@/lib/auth';
 import { checkRateLimit } from '@/lib/rate-limit';
 import ColorizePageClient from '@/components/colorize/ColorizePageClient';
 
-export default async function ColorizePage() {
+export default async function ColorizePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const session = await auth();
 
-  // Redirect to sign in if not authenticated
+  // Redirect to login if not authenticated
   if (!session?.user?.id) {
-    redirect('/api/auth/signin');
+    redirect(`/${locale}/login`);
   }
 
   // Get rate limit info

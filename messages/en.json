@@ -15,7 +15,34 @@
     "welcome": "Welcome",
     "rateLimitInfo": "{remaining} of {total} free colorizations remaining today",
     "limitReached": "Daily limit reached",
-    "signInRequired": "Sign in to colorize photos"
+    "signInRequired": "Sign in to colorize photos",
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Sign in to your account to colorize photos",
+      "email": "Email address",
+      "password": "Password",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "register": "Create an account",
+      "error": "Invalid email or password.",
+      "loading": "Signing in..."
+    },
+    "register": {
+      "title": "Create an account",
+      "subtitle": "Sign up to start colorizing your photos for free",
+      "name": "Name (optional)",
+      "email": "Email address",
+      "password": "Password",
+      "passwordHint": "At least 8 characters",
+      "confirmPassword": "Confirm password",
+      "submit": "Create account",
+      "hasAccount": "Already have an account?",
+      "login": "Sign in",
+      "error": "Registration failed. Please try again.",
+      "passwordMismatch": "Passwords do not match.",
+      "loading": "Creating account...",
+      "success": "Account created! Redirecting..."
+    }
   },
   "hero": {
     "title": "Bring your",

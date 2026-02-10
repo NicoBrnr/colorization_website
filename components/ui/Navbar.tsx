@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
+import { signOut } from 'next-auth/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Palette, User, LogOut } from 'lucide-react';
 
@@ -91,22 +92,20 @@ export function Navbar({ user }: NavbarProps) {
                       <div className="px-4 py-2 border-b border-gray-700">
                         <p className="text-sm text-gray-400">{user.email}</p>
                       </div>
-                      <form action="/api/auth/signout" method="POST">
-                        <button
-                          type="submit"
-                          className="w-full px-4 py-2 text-left text-sm text-gray-300 hover:bg-gray-700 flex items-center gap-2"
-                        >
-                          <LogOut className="w-4 h-4" />
-                          {t('signOut')}
-                        </button>
-                      </form>
+                      <button
+                        onClick={() => signOut({ callbackUrl: `/${locale}` })}
+                        className="w-full px-4 py-2 text-left text-sm text-gray-300 hover:bg-gray-700 flex items-center gap-2"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        {t('signOut')}
+                      </button>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
             ) : (
               <Link
-                href="/api/auth/signin"
+                href={`/${locale}/login`}
                 className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white font-medium rounded-lg transition-colors flex items-center gap-2"
               >
                 <User className="w-4 h-4" />
@@ -183,19 +182,17 @@ export function Navbar({ user }: NavbarProps) {
                         <p className="text-gray-400 text-xs">{user.email}</p>
                       </div>
                     </div>
-                    <form action="/api/auth/signout" method="POST">
-                      <button
-                        type="submit"
-                        className="w-full px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg flex items-center gap-2"
-                      >
-                        <LogOut className="w-4 h-4" />
-                        {t('signOut')}
-                      </button>
-                    </form>
+                    <button
+                      onClick={() => signOut({ callbackUrl: `/${locale}` })}
+                      className="w-full px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg flex items-center gap-2"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      {t('signOut')}
+                    </button>
                   </div>
                 ) : (
                   <Link
-                    href="/api/auth/signin"
+                    href={`/${locale}/login`}
                     onClick={() => setIsOpen(false)}
                     className="block px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg text-center"
                   >
