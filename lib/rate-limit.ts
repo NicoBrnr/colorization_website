@@ -1,6 +1,6 @@
 import { prisma } from './prisma';
 
-const DAILY_LIMIT = 3;
+const DAILY_LIMIT = parseInt(process.env.DAILY_COLORIZE_LIMIT || '10', 10);
 
 export async function checkRateLimit(userId: string): Promise<{
   allowed: boolean;
