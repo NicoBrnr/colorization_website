@@ -100,16 +100,29 @@ export async function POST(request: NextRequest) {
 
       // Get the colorized image
       const contentType = apiResponse.headers.get('content-type');
-      let imageUrl: string;
+      let imageUrl: string | undefined;
       
       if (contentType?.includes('application/json')) {
         const data = await apiResponse.json();
         imageUrl = data.image || data.imageUrl || data.result;
       } else {
         const imageBuffer = await apiResponse.arrayBuffer();
-        const base64 = Buffer.from(imageBuffer).toString('base64');
-        const imageType = contentType || 'image/jpeg';
-        imageUrl = `data:${imageType};base64,${base64}`;
+        if (imageBuffer.byteLength > 0) {
+          const base64 = Buffer.from(imageBuffer).toString('base64');
+          const imageType = contentType || 'image/jpeg';
+          imageUrl = `data:${imageType};base64,${base64}`;
+        }
+      }
+
+      if (!imageUrl) {
+        console.error('DeOldify API returned 200 but no usable image data');
+        if (reservation.reservationId) {
+          await releaseColorization(reservation.reservationId);
+        }
+        return NextResponse.json(
+          { error: 'Colorization service returned no image' },
+          { status: 502 }
+        );
       }
 
       return NextResponse.json({ 
