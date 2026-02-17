@@ -30,7 +30,7 @@ export function CTA() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-6">
             <Sparkles className="w-4 h-4" />
-            Gratuit et sans inscription
+            {t('badge')}
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
@@ -41,7 +41,7 @@ export function CTA() {
             {t('subtitle')}
           </p>
 
-          <Link href={`/${locale}/coloriser`}>
+          <Link href={`/${locale}/register`}>
             <Button size="lg" className="animate-pulse-glow group">
               {t('button')}
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />

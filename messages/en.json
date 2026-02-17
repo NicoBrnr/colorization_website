@@ -56,12 +56,12 @@
     "title": "Why choose our service?",
     "subtitle": "Cutting-edge technology at the service of your memories",
     "ai": {
-      "title": "State-of-the-art AI",
-      "description": "Our DeOldify model uses deep learning for realistic and natural colorization."
+      "title": "In-house AI",
+      "description": "Our custom-built artificial intelligence uses deep learning for realistic and natural colorization."
     },
     "fast": {
       "title": "Fast and simple",
-      "description": "Upload your photo and get the result in seconds. No registration required."
+      "description": "Create an account in seconds, upload your photo and get the result instantly."
     },
     "quality": {
       "title": "High quality",
@@ -69,7 +69,7 @@
     },
     "free": {
       "title": "Free",
-      "description": "Colorize your photos for free. No limit on the number of images."
+      "description": "Colorize up to 10 photos per day for free. Sign up and start right away."
     }
   },
   "howItWorks": {
@@ -96,16 +96,13 @@
   },
   "cta": {
     "title": "Ready to bring your memories back to life?",
-    "subtitle": "Start now and see the difference in seconds.",
-    "button": "Colorize my photo for free"
+    "subtitle": "Create your free account and colorize up to 10 photos per day. No credit card required.",
+    "badge": "Free — no credit card required",
+    "button": "Create a free account"
   },
   "footer": {
     "description": "Photo colorization powered by artificial intelligence. Bring your black and white memories to life.",
     "links": "Useful links",
-    "legal": "Legal notice",
-    "privacy": "Privacy policy",
-    "terms": "Terms of use",
-    "contact": "Contact",
     "copyright": "© 2026 Photo Colorization. All rights reserved."
   },
   "colorize": {
