@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <footer className="bg-gray-900 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Brand */}
           <div className="space-y-4">
             <Link href={`/${locale}`} className="flex items-center gap-2">
@@ -46,29 +46,6 @@ export function Footer() {
                 <Link href={`/${locale}#gallery`} className="text-gray-400 hover:text-white transition-colors text-sm">
                   Galerie
                 </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h3 className="font-semibold text-white mb-4">{t('legal')}</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href={`/${locale}/privacy`} className="text-gray-400 hover:text-white transition-colors text-sm">
-                  {t('privacy')}
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/terms`} className="text-gray-400 hover:text-white transition-colors text-sm">
-                  {t('terms')}
-                </Link>
-              </li>
-              <li>
-                <a href="mailto:contact@example.com" className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  {t('contact')}
-                </a>
               </li>
             </ul>
           </div>
