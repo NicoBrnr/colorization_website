@@ -71,12 +71,6 @@ export async function POST(request: NextRequest) {
     apiFormData.append('render_factor', renderFactor);
     apiFormData.append('post_process', postProcess);
 
-    // Debug: Log API configuration (remove in production)
-    console.log('DeOldify API URL:', DEOLDIFY_API_URL);
-    console.log('API Key exists:', !!DEOLDIFY_API_KEY);
-    console.log('API Key length:', DEOLDIFY_API_KEY?.length);
-    console.log('API Key first 4 chars:', DEOLDIFY_API_KEY?.substring(0, 4));
-
     // Call the DeOldify API
     const apiResponse = await fetch(`${DEOLDIFY_API_URL}/colorize`, {
       method: 'POST',
