@@ -7,7 +7,42 @@
     "home": "Accueil",
     "colorize": "Coloriser",
     "features": "Fonctionnalités",
-    "gallery": "Galerie"
+    "gallery": "Galerie",
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter"
+  },
+  "auth": {
+    "welcome": "Bienvenue",
+    "rateLimitInfo": "{remaining} sur {total} colorisations gratuites restantes aujourd'hui",
+    "limitReached": "Limite quotidienne atteinte",
+    "signInRequired": "Connectez-vous pour coloriser des photos",
+    "login": {
+      "title": "Connexion",
+      "subtitle": "Connectez-vous pour coloriser vos photos",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "noAccount": "Pas encore de compte ?",
+      "register": "Créer un compte",
+      "error": "Email ou mot de passe invalide.",
+      "loading": "Connexion en cours..."
+    },
+    "register": {
+      "title": "Créer un compte",
+      "subtitle": "Inscrivez-vous pour coloriser vos photos gratuitement",
+      "name": "Nom (optionnel)",
+      "email": "Adresse email",
+      "password": "Mot de passe",
+      "passwordHint": "Au moins 8 caractères",
+      "confirmPassword": "Confirmer le mot de passe",
+      "submit": "Créer un compte",
+      "hasAccount": "Déjà un compte ?",
+      "login": "Se connecter",
+      "error": "Erreur lors de l'inscription. Veuillez réessayer.",
+      "passwordMismatch": "Les mots de passe ne correspondent pas.",
+      "loading": "Création du compte...",
+      "success": "Compte créé ! Redirection..."
+    }
   },
   "hero": {
     "title": "Donnez vie à vos",
