@@ -42,7 +42,7 @@ export function Navbar({ user }: NavbarProps) {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Center Links */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <Link
@@ -59,6 +59,27 @@ export function Navbar({ user }: NavbarProps) {
             >
               {t('colorize')}
             </Link>
+          </div>
+
+          {/* Right Section: Language Switcher + User Menu */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* Language Switcher */}
+            <div className="flex items-center gap-1">
+              <Link
+                href="/fr"
+                className={`px-2 py-1 rounded text-sm ${locale === 'fr' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'}`}
+              >
+                FR
+              </Link>
+              <Link
+                href="/en"
+                className={`px-2 py-1 rounded text-sm ${locale === 'en' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'}`}
+              >
+                EN
+              </Link>
+            </div>
+
+            <div className="w-px h-6 bg-gray-700" />
 
             {/* User Menu */}
             {user ? (
@@ -112,22 +133,6 @@ export function Navbar({ user }: NavbarProps) {
                 {t('signIn')}
               </Link>
             )}
-          </div>
-
-          {/* Language Switcher */}
-          <div className="hidden md:flex items-center gap-2 ml-4">
-            <Link
-              href="/fr"
-              className={`px-2 py-1 rounded text-sm ${locale === 'fr' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'}`}
-            >
-              FR
-            </Link>
-            <Link
-              href="/en"
-              className={`px-2 py-1 rounded text-sm ${locale === 'en' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'}`}
-            >
-              EN
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
