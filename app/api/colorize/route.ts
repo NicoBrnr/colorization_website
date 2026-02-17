@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
-import { checkRateLimit, recordColorization } from '@/lib/rate-limit';
+import { reserveColorization, releaseColorization } from '@/lib/rate-limit';
 
 const DEOLDIFY_API_URL = process.env.DEOLDIFY_API_URL 
 const DEOLDIFY_API_KEY = process.env.DEOLDIFY_API_KEY
@@ -17,20 +17,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check rate limit
-    const rateLimit = await checkRateLimit(session.user.id);
-    
-    if (!rateLimit.allowed) {
-      return NextResponse.json(
-        { 
-          error: `Daily limit reached. You have used all ${rateLimit.total} free colorizations today. Please try again tomorrow.`,
-          remaining: rateLimit.remaining,
-          total: rateLimit.total
-        },
-        { status: 429 }
-      );
-    }
-
+    // Validate input before reserving a slot
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
 
@@ -41,7 +28,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate file type
     const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
     if (!validTypes.includes(file.type)) {
       return NextResponse.json(
@@ -50,7 +36,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate file size (10MB max)
     const maxSize = 10 * 1024 * 1024;
     if (file.size > maxSize) {
       return NextResponse.json(
@@ -59,65 +44,86 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get optional parameters
-    const model = formData.get('model') as string || 'artistic';
-    const renderFactor = formData.get('render_factor') as string || '35';
-    const postProcess = formData.get('post_process') as string || 'true';
+    // Atomically check rate limit and reserve a slot (prevents concurrent
+    // requests from exceeding the daily limit)
+    const reservation = await reserveColorization(session.user.id);
 
-    // Create FormData for the DeOldify API
-    const apiFormData = new FormData();
-    apiFormData.append('file', file);
-    apiFormData.append('model', model);
-    apiFormData.append('render_factor', renderFactor);
-    apiFormData.append('post_process', postProcess);
-
-    // Call the DeOldify API
-    const apiResponse = await fetch(`${DEOLDIFY_API_URL}/colorize`, {
-      method: 'POST',
-      headers: {
-        ...(DEOLDIFY_API_KEY && { 'X-API-Key': DEOLDIFY_API_KEY }),
-      },
-      body: apiFormData,
-    });
-
-    if (!apiResponse.ok) {
-      const errorText = await apiResponse.text();
-      console.error('DeOldify API error:', errorText);
-      console.error('Response status:', apiResponse.status);
-      console.error('Response headers:', Object.fromEntries(apiResponse.headers.entries()));
+    if (!reservation.allowed) {
       return NextResponse.json(
-        { error: 'Colorization service error' },
-        { status: apiResponse.status }
+        { 
+          error: `Daily limit reached. You have used all ${reservation.total} free colorizations today. Please try again tomorrow.`,
+          remaining: reservation.remaining,
+          total: reservation.total
+        },
+        { status: 429 }
       );
     }
 
-    // Get the colorized image
-    const contentType = apiResponse.headers.get('content-type');
-    let imageUrl: string;
-    
-    if (contentType?.includes('application/json')) {
-      // API returns JSON with image URL or base64
-      const data = await apiResponse.json();
-      imageUrl = data.image || data.imageUrl || data.result;
-    } else {
-      // API returns image directly
-      const imageBuffer = await apiResponse.arrayBuffer();
-      const base64 = Buffer.from(imageBuffer).toString('base64');
-      const imageType = contentType || 'image/jpeg';
-      imageUrl = `data:${imageType};base64,${base64}`;
+    try {
+      // Get optional parameters
+      const model = formData.get('model') as string || 'artistic';
+      const renderFactor = formData.get('render_factor') as string || '35';
+      const postProcess = formData.get('post_process') as string || 'true';
+
+      // Create FormData for the DeOldify API
+      const apiFormData = new FormData();
+      apiFormData.append('file', file);
+      apiFormData.append('model', model);
+      apiFormData.append('render_factor', renderFactor);
+      apiFormData.append('post_process', postProcess);
+
+      // Call the DeOldify API
+      const apiResponse = await fetch(`${DEOLDIFY_API_URL}/colorize`, {
+        method: 'POST',
+        headers: {
+          ...(DEOLDIFY_API_KEY && { 'X-API-Key': DEOLDIFY_API_KEY }),
+        },
+        body: apiFormData,
+      });
+
+      if (!apiResponse.ok) {
+        const errorText = await apiResponse.text();
+        console.error('DeOldify API error:', errorText);
+        console.error('Response status:', apiResponse.status);
+        console.error('Response headers:', Object.fromEntries(apiResponse.headers.entries()));
+
+        // Release the reserved slot so the user can retry
+        if (reservation.reservationId) {
+          await releaseColorization(reservation.reservationId);
+        }
+
+        return NextResponse.json(
+          { error: 'Colorization service error' },
+          { status: apiResponse.status }
+        );
+      }
+
+      // Get the colorized image
+      const contentType = apiResponse.headers.get('content-type');
+      let imageUrl: string;
+      
+      if (contentType?.includes('application/json')) {
+        const data = await apiResponse.json();
+        imageUrl = data.image || data.imageUrl || data.result;
+      } else {
+        const imageBuffer = await apiResponse.arrayBuffer();
+        const base64 = Buffer.from(imageBuffer).toString('base64');
+        const imageType = contentType || 'image/jpeg';
+        imageUrl = `data:${imageType};base64,${base64}`;
+      }
+
+      return NextResponse.json({ 
+        imageUrl,
+        remaining: reservation.remaining,
+        total: reservation.total
+      });
+    } catch (apiError) {
+      // Release the reserved slot on any failure after reservation
+      if (reservation.reservationId) {
+        await releaseColorization(reservation.reservationId);
+      }
+      throw apiError;
     }
-
-    // Record the colorization
-    await recordColorization(session.user.id);
-
-    // Get updated rate limit info
-    const updatedRateLimit = await checkRateLimit(session.user.id);
-
-    return NextResponse.json({ 
-      imageUrl,
-      remaining: updatedRateLimit.remaining,
-      total: updatedRateLimit.total
-    });
   } catch (error) {
     console.error('Colorization error:', error);
     return NextResponse.json(
