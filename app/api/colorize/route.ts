@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { reserveColorization, releaseColorization } from '@/lib/rate-limit';
 
-const DEOLDIFY_API_URL = process.env.DEOLDIFY_API_URL 
-const DEOLDIFY_API_KEY = process.env.DEOLDIFY_API_KEY
+const DEOLDIFY_API_URL = process.env.DEOLDIFY_API_URL;
+const DEOLDIFY_API_KEY = process.env.DEOLDIFY_API_KEY;
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,7 +17,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate input before reserving a slot
+    if (!DEOLDIFY_API_URL) {
+      console.error('DEOLDIFY_API_URL environment variable is not set');
+      return NextResponse.json(
+        { error: 'Colorization service is not configured' },
+        { status: 503 }
+      );
+    }
+
     const formData = await request.formData();
     const file = formData.get('file') as File | null;
 

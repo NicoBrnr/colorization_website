@@ -39,7 +39,7 @@ export async function colorizeImage(
       const errorData = await response.json().catch(() => ({}));
       return {
         success: false,
-        error: errorData.error || `Erreur serveur: ${response.status}`,
+        error: errorData.error || `Server error: ${response.status}`,
       };
     }
 
@@ -53,7 +53,7 @@ export async function colorizeImage(
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Erreur de connexion',
+      error: error instanceof Error ? error.message : 'Connection error',
     };
   }
 }

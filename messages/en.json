@@ -15,6 +15,7 @@
     "welcome": "Welcome",
     "rateLimitInfo": "{remaining} of {total} free colorizations remaining today",
     "limitReached": "Daily limit reached",
+    "limitResetInfo": "Your daily limit will reset at midnight (00:00).",
     "signInRequired": "Sign in to colorize photos",
     "login": {
       "title": "Sign in",
@@ -103,6 +104,9 @@
   "footer": {
     "description": "Photo colorization powered by artificial intelligence. Bring your black and white memories to life.",
     "links": "Useful links",
+    "linkColorize": "Colorize a photo",
+    "linkFeatures": "Features",
+    "linkGallery": "Gallery",
     "copyright": "© 2026 Photo Colorization. All rights reserved."
   },
   "colorize": {
@@ -119,7 +123,9 @@
       "model": "Model",
       "modelArtistic": "Artistic (best quality)",
       "modelStable": "Stable (faster)",
-      "quality": "Render quality"
+      "quality": "Render quality",
+      "fast": "Fast",
+      "highQuality": "High quality"
     },
     "process": {
       "button": "Colorize",
@@ -132,8 +138,12 @@
       "download": "Download",
       "downloadHD": "Download HD",
       "newImage": "New image",
+      "share": "Share",
+      "shareTitle": "Colorized photo",
+      "shareText": "Check out my AI-colorized photo!",
       "original": "Original",
-      "colorized": "Colorized"
+      "colorized": "Colorized",
+      "dragToCompare": "Drag to compare"
     },
     "error": {
       "title": "An error occurred",

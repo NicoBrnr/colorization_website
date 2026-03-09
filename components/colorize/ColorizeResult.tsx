@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Download, RefreshCw, Share2 } from 'lucide-react';
@@ -15,6 +16,11 @@ interface ColorizeResultProps {
 
 export function ColorizeResult({ originalImage, colorizedImage, onNewImage }: ColorizeResultProps) {
   const t = useTranslations('colorize.result');
+  const [canShare, setCanShare] = useState(false);
+
+  useEffect(() => {
+    setCanShare(typeof navigator !== 'undefined' && 'share' in navigator);
+  }, []);
 
   const handleDownload = () => {
     const timestamp = new Date().toISOString().slice(0, 10);
@@ -30,8 +36,8 @@ export function ColorizeResult({ originalImage, colorizedImage, onNewImage }: Co
         const file = new File([blob], 'colorized-image.jpg', { type: 'image/jpeg' });
 
         await navigator.share({
-          title: 'Photo colorisée',
-          text: 'Découvrez ma photo colorisée par IA !',
+          title: t('shareTitle'),
+          text: t('shareText'),
           files: [file],
         });
       } catch (error) {
@@ -66,10 +72,10 @@ export function ColorizeResult({ originalImage, colorizedImage, onNewImage }: Co
           {t('download')}
         </Button>
 
-        {typeof navigator !== 'undefined' && 'share' in navigator && (
+        {canShare && (
           <Button variant="secondary" onClick={handleShare}>
             <Share2 className="w-5 h-5 mr-2" />
-            Partager
+            {t('share')}
           </Button>
         )}
 

@@ -121,7 +121,7 @@ export function ImageComparison({ beforeImage, afterImage, className = '' }: Ima
       {!isDragging && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 hover:opacity-100 transition-opacity">
           <div className="bg-black/50 backdrop-blur-sm px-4 py-2 rounded-lg">
-            <span className="text-white text-sm">Glissez pour comparer</span>
+            <span className="text-white text-sm">{t('dragToCompare')}</span>
           </div>
         </div>
       )}

@@ -80,7 +80,7 @@ export default function ColorizePageClient({ initialRateLimit }: ColorizePageCli
         });
       }
     } else {
-      setError(result.error || 'Une erreur est survenue');
+      setError(result.error || t('error.title'));
       setProcessingState('error');
     }
   };
@@ -218,8 +218,8 @@ export default function ColorizePageClient({ initialRateLimit }: ColorizePageCli
                                 disabled={isProcessing}
                               />
                               <div className="flex justify-between text-xs text-gray-500 mt-1">
-                                <span>Rapide</span>
-                                <span>Haute qualité</span>
+                                <span>{t('options.fast')}</span>
+                                <span>{t('options.highQuality')}</span>
                               </div>
                             </div>
                           </CardContent>

@@ -34,17 +34,17 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href={`/${locale}/coloriser`} className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Coloriser une photo
+                  {t('linkColorize')}
                 </Link>
               </li>
               <li>
                 <Link href={`/${locale}#features`} className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Fonctionnalités
+                  {t('linkFeatures')}
                 </Link>
               </li>
               <li>
                 <Link href={`/${locale}#gallery`} className="text-gray-400 hover:text-white transition-colors text-sm">
-                  Galerie
+                  {t('linkGallery')}
                 </Link>
               </li>
             </ul>
