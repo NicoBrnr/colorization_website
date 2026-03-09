@@ -58,7 +58,7 @@ export function RateLimitBanner({ remaining, total }: RateLimitBannerProps) {
         
         {isExhausted && (
           <p className="text-xs text-red-300 mt-2">
-            Your daily limit will reset at midnight (00:00).
+            {t('limitResetInfo')}
           </p>
         )}
       </div>

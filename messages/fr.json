@@ -15,6 +15,7 @@
     "welcome": "Bienvenue",
     "rateLimitInfo": "{remaining} sur {total} colorisations gratuites restantes aujourd'hui",
     "limitReached": "Limite quotidienne atteinte",
+    "limitResetInfo": "Votre limite quotidienne sera réinitialisée à minuit (00h00).",
     "signInRequired": "Connectez-vous pour coloriser des photos",
     "login": {
       "title": "Connexion",
@@ -103,6 +104,9 @@
   "footer": {
     "description": "Colorisation de photos par intelligence artificielle. Donnez vie à vos souvenirs en noir et blanc.",
     "links": "Liens utiles",
+    "linkColorize": "Coloriser une photo",
+    "linkFeatures": "Fonctionnalités",
+    "linkGallery": "Galerie",
     "copyright": "© 2026 Colorisation Photos. Tous droits réservés."
   },
   "colorize": {
@@ -119,7 +123,9 @@
       "model": "Modèle",
       "modelArtistic": "Artistique (meilleure qualité)",
       "modelStable": "Stable (plus rapide)",
-      "quality": "Qualité de rendu"
+      "quality": "Qualité de rendu",
+      "fast": "Rapide",
+      "highQuality": "Haute qualité"
     },
     "process": {
       "button": "Coloriser",
@@ -132,8 +138,12 @@
       "download": "Télécharger",
       "downloadHD": "Télécharger HD",
       "newImage": "Nouvelle image",
+      "share": "Partager",
+      "shareTitle": "Photo colorisée",
+      "shareText": "Découvrez ma photo colorisée par IA !",
       "original": "Original",
-      "colorized": "Colorisé"
+      "colorized": "Colorisé",
+      "dragToCompare": "Glissez pour comparer"
     },
     "error": {
       "title": "Une erreur est survenue",
