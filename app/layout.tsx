@@ -16,6 +16,20 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
+        {/* Google Analytics 4 (gtag.js) */}
+        <Script
+          id="ga4-src"
+          src="https://www.googletagmanager.com/gtag/js?id=G-JK06X721WY"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-config" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JK06X721WY');`}
+        </Script>
+        {/* End Google Analytics 4 (gtag.js) */}
+
         {/* Google Tag Manager */}
         <Script id="gtm-base" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
